@@ -48,7 +48,3 @@ The input is 16 bits represented by (`samp`), which is then added to (`next_samp
 ## Dependencies
 
 -   No external libraries are required.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
