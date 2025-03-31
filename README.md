@@ -20,11 +20,11 @@ The module (`mod.v`) implements a two-stage Delta-Sigma modulator designed to co
 
 ### Parameters
 
--   `THRESHOLD`: A local parameter representing the threshold value for the second integrator. It is set to `28'h14CCCCC`, which approximates 1.3. Ideally, it will be a number randing from 1.2 to 1.4.
+-   `THRESHOLD`: A local parameter representing the threshold value for the second integrator. It is set to `28'h14CCCCC`, which approximates 1.3. Ideally, it will be a number ranging from 1.2 to 1.4.
 
 ### Design
 
-The input is 16 bits represented by (`samp`), which is then added to (`next_sample_reg`) as (`{16'b0, samp, 8'b0}`). The 8 bits below are to allow for a higher resolution calculations of the two integrators while the 16 bits above are to allow for a ghreater accumulation value.
+The input is 16 bits represented by (`samp`), which is then added to (`next_sample_reg`) as (`{16'b0, samp, 8'b0}`). The 8 bits below allow higher resolution calculations of the two integrators, while the 16 bits above allow for greater accumulation values.
 
 ### Functionality
 
@@ -37,7 +37,7 @@ The input is 16 bits represented by (`samp`), which is then added to (`next_samp
     -      After reset, the state machine transitions to the `SET` state.
     -      The `oversample_counter` increments with each clock cycle.
     -      When `oversample_counter` reaches its maximum value (255), it resets to zero, and a new sample is loaded into `sample_reg`.
-    -   The `pull` output is asserted high when the counter is equal to 255.
+    -   The `pull` output is asserted high when the counter equals 255.
     -      The two integrators (`integrator_1`, `integrator_2`) accumulate the input sample and feedback values.
     -      If `integrator_2` exceeds the `THRESHOLD`, the output `dout` is set high, and negative feedback values (`delta_1`, `delta_2`) are generated. Otherwise, `dout` is set low, and the feedback values are zero.
 3.  **Oversampling:**
